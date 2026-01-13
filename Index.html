@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Free Image Cropping Tool Online | Nano Cropper+</title>
+    <meta name="description" content="Nano Cropper+ is a free image cropping tool that lets you crop images online instantly. No signup required. Fast, secure, and easy to use image cropper.">
+    <meta name="keywords" content="free image cropping tool, crop images online, online image cropper, image editor, crop photo, resize image">
+    <meta name="author" content="Nano Cropper+">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Free Image Cropping Tool Online | Nano Cropper+">
+    <meta property="og:description" content="Crop images online instantly with Nano Cropper+. Free, fast, and secure image cropping tool.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✂️</text></svg>">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <i class="fas fa-cut"></i>
+                    <span>Nano Cropper+</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="#tool-section">Use Tool</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="particles-container" id="particlesContainer"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate-fade-in">
+                    Free Image Cropping Tool – Crop Images Online Instantly
+                </h1>
+                <p class="hero-subtitle animate-fade-in delay-1">
+                    Welcome to Nano Cropper+, the fastest and most powerful free image cropping tool available online. 
+                    Crop, resize, and perfect your images in seconds without any signup or software installation. 
+                    Your privacy is guaranteed – all processing happens directly in your browser.
+                </p>
+                <div class="hero-buttons animate-fade-in delay-2">
+                    <a href="#tool-section" class="btn btn-primary ripple">
+                        <i class="fas fa-scissors"></i> Use My Tool
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary ripple">
+                        <i class="fas fa-envelope"></i> Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tool Section -->
+    <section class="tool-section" id="tool-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Online Image Cropper Tool</h2>
+                <p>Upload your image and start cropping instantly – no registration needed!</p>
+            </div>
+
+            <div class="tool-container">
+                <!-- Upload Area -->
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Drop your image here or click to upload</h3>
+                    <p>Supports JPG, PNG, WEBP formats</p>
+                    <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" hidden>
+                    <button class="btn btn-primary ripple" id="uploadBtn">
+                        <i class="fas fa-image"></i> Choose Image
+                    </button>
+                </div>
+
+                <!-- Cropper Area -->
+                <div class="cropper-area hidden" id="cropperArea">
+                    <div class="cropper-container">
+                        <img id="cropperImage" alt="Image to crop">
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="cropper-controls">
+                        <div class="control-group">
+                            <label>Aspect Ratio:</label>
+                            <div class="btn-group">
+                                <button class="btn-control active" data-ratio="free">Free</button>
+                                <button class="btn-control" data-ratio="1">1:1</button>
+                                <button class="btn-control" data-ratio="1.333333">4:3</button>
+                                <button class="btn-control" data-ratio="1.777777">16:9</button>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Actions:</label>
+                            <div class="btn-group">
+                                <button class="btn-control" id="rotateLeft" title="Rotate Left">
+                                    <i class="fas fa-undo"></i>
+                                </button>
+                                <button class="btn-control" id="rotateRight" title="Rotate Right">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                                <button class="btn-control" id="zoomIn" title="Zoom In">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <button class="btn-control" id="zoomOut" title="Zoom Out">
+                                    <i class="fas fa-search-minus"></i>
+                                </button>
+                                <button class="btn-control" id="flipH" title="Flip Horizontal">
+                                    <i class="fas fa-arrows-alt-h"></i>
+                                </button>
+                                <button class="btn-control" id="flipV" title="Flip Vertical">
+                                    <i class="fas fa-arrows-alt-v"></i>
+                                </button>
+                                <button class="btn-control" id="reset" title="Reset">
+                                    <i class="fas fa-sync"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <button class="btn btn-primary ripple" id="cropBtn">
+                                <i class="fas fa-crop"></i> Crop & Preview
+                            </button>
+                            <button class="btn btn-secondary ripple" id="newImageBtn">
+                                <i class="fas fa-plus"></i> Upload New
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Area -->
+                <div class="preview-area hidden" id="previewArea">
+                    <h3>Preview & Download</h3>
+                    <div class="preview-container">
+                        <canvas id="previewCanvas"></canvas>
+                    </div>
+                    <div class="preview-actions">
+                        <button class="btn btn-success ripple" id="downloadBtn">
+                            <i class="fas fa-download"></i> Download Cropped Image
+                        </button>
+                        <button class="btn btn-secondary ripple" id="backToEditBtn">
+                            <i class="fas fa-arrow-left"></i> Back to Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Nano Cropper+</h2>
+                <p>The best free image cropping tool with powerful features</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Crop images instantly with our optimized processing engine. No waiting, no delays.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>100% Secure</h3>
+                    <p>All processing happens in your browser. Your images never leave your device.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Completely Free</h3>
+                    <p>No hidden costs, no subscriptions, no signup required. Use it unlimited times.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Works Everywhere</h3>
+                    <p>Fully responsive design that works on desktop, tablet, and mobile devices.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3>Advanced Controls</h3>
+                    <p>Rotate, zoom, flip, and use preset aspect ratios for perfect crops every time.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-image"></i>
+                    </div>
+                    <h3>Multiple Formats</h3>
+                    <p>Support for JPG, PNG, and WEBP formats for maximum compatibility.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Content Sections -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-card animate-on-scroll">
+                <h2>Free Image Cropping Tool for Everyone</h2>
+                <p>
+                    Nano Cropper+ is designed to be the most user-friendly <strong>free image cropping tool</strong> available online. 
+                    Whether you're a professional photographer, graphic designer, social media manager, or just someone who needs to 
+                    crop photos occasionally, our tool provides all the features you need without any complexity.
+                </p>
+                <p>
+                    Our <strong>online image cropper</strong> eliminates the need for expensive software like Photoshop. Simply upload 
+                    your image, select the area you want to keep, and download your perfectly cropped result. It's that simple! 
+                    The entire process takes just seconds, and you can crop as many images as you want without any limitations.
+                </p>
+            </div>
+
+            <div class="content-card animate-on-scroll">
+                <h2>Online Image Cropper – Fast & Secure</h2>
+                <p>
+                    Security and privacy are our top priorities. When you use Nano Cropper+, your images are processed entirely 
+                    within your web browser using advanced HTML5 Canvas technology. This means your photos <strong>never get uploaded 
+                    to any server</strong>, ensuring complete privacy and security. Your personal or business images remain 100% 
+                    confidential.
+                </p>
+                <p>
+                    Our <strong>free image cropping tool</strong> also delivers exceptional speed. Because all processing happens 
+                    locally on your device, there's no network latency or waiting for server responses. You get instant results 
+                    every time, making it the perfect solution for time-sensitive projects or bulk image editing tasks.
+                </p>
+            </div>
+
+            <div class="content-card animate-on-scroll">
+                <h2>Professional Features in a Free Image Cropping Tool</h2>
+                <p>
+                    Don't let the word "free" fool you – Nano Cropper+ packs professional-grade features that rival premium tools:
+                </p>
+                <ul>
+                    <li><strong>Precision Cropping:</strong> Drag and resize the crop area with pixel-perfect accuracy</li>
+                    <li><strong>Aspect Ratio Presets:</strong> Quick access to common ratios like 1:1 (Instagram), 4:3, and 16:9</li>
+                    <li><strong>Image Rotation:</strong> Rotate your image left or right to get the perfect orientation</li>
+                    <li><strong>Zoom Controls:</strong> Zoom in to focus on details or zoom out for the bigger picture</li>
+                    <li><strong>Flip Functions:</strong> Flip horizontally or vertically for mirror effects</li>
+                    <li><strong>Real-time Preview:</strong> See exactly how your cropped image will look before downloading</li>
+                    <li><strong>High-Quality Output:</strong> Download your cropped images in full resolution with no quality loss</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <i class="fas fa-cut"></i>
+                        <span>Nano Cropper+</span>
+                    </div>
+                    <p>The best free image cropping tool online. Crop, resize, and perfect your images instantly without any signup or installation.</p>
+                    <div class="social-links">
+                        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tool-section">Use Tool</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Our Promise</h4>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Free Image Cropping Tool</li>
+                        <li><i class="fas fa-check"></i> Crop Images Online Securely</li>
+                        <li><i class="fas fa-check"></i> No Registration Required</li>
+                        <li><i class="fas fa-check"></i> 100% Privacy Protected</li>
+                        <li><i class="fas fa-check"></i> Unlimited Usage</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nano Cropper+. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/cropper.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
